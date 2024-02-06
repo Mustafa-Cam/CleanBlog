@@ -35,15 +35,19 @@ app.set("view engine", "ejs");
 // })
 
 app.get("/", async (req, res) => {
-  const message = req.query.message
-
-  const posts= await Posts.find({}) 
-  res.render("index",{ message,posts}); 
+  let message = req.query.message;
+  const posts = await Posts.find({});
+  res.render("index", { message, posts });
 });
 
 app.get("/addpost", (req, res) => {
   res.render("add_post");
 });
+
+app.get("/posts/:id", async (req, res) => {
+  const post = await Posts.findById(req.params.id);
+  res.render("post", { post });
+})
 
 app.listen(port, () => {
   console.log("listening on port 3000");
