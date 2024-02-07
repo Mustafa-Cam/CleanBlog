@@ -4,7 +4,8 @@ const app = express();
 const port = 3000;
 const router = express.Router();
 const Posts = require("./models/posts");
-const postRoutes = require("./Routes/postRpoutes");
+const postRoutes = require("./Routes/postRoutes");
+const updatedPost = require("./controller/postController");
 
 //!Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -44,10 +45,15 @@ app.get("/addpost", (req, res) => {
   res.render("add_post");
 });
 
+app.get("/posts/:id/edit", async (req, res) => {
+  const post = await Posts.findById(req.params.id);
+  res.render("postviews/edit_post", { post });
+});
+
 app.get("/posts/:id", async (req, res) => {
   const post = await Posts.findById(req.params.id);
-  res.render("post", { post });
-})
+  res.render("postviews/post", { post });
+});
 
 app.listen(port, () => {
   console.log("listening on port 3000");

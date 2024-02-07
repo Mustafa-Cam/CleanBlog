@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/_heads.ejs') %>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+
+   <%- include('../partials/_navbar.ejs') %>
+
+    <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Clean Blog</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+    <!-- Post -->
+    <div class="container my-5">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title mb-4"><%= post.title %></h1>
+          <p class="card-text"><%= post.message %></p>
+          <!-- Update and Delete Buttons -->
+          <div class="d-flex justify-content-end mt-4">
+            <a href="/posts/<%= post._id %>/edit" class="btn btn-primary mr-2">Update</a>
+            <button class="btn btn-danger" id="deletePost">Delete</button>
+          </div>
+          <!-- Back to Posts Button -->
+          <a href="/" class="btn btn-primary mt-3">Back to Posts</a>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Footer -->
+    <%- include('../partials/_footer.ejs') %>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Silme butonunu seç
+        const deleteButton = document.getElementById("deletePost");
+
+        // Silme butonuna tıklama olayını ekle
+        deleteButton.addEventListener("click", function () {
+          // Silme işlemini onayla
+          const confirmDelete = confirm(
+            "Are you sure you want to delete this post?"
+          );
+          if (confirmDelete) {
+            // Kullanıcı onaylarsa, postun silinmesi için istek gönder
+            // Bu isteği Axios gibi bir HTTP istemcisiyle yapabilirsiniz
+            // Örneğin: axios.delete('/posts/<%= post._id %>');
+            // Silme işlemi tamamlandıktan sonra kullanıcıyı yönlendirebilirsiniz
+            window.location.href = "/posts/<%= post._id %>/delete";
+          }
+        });
+      });
+    </script>
+    <script>
+      // Mesaj Kutusu
+      // Sayfanın altında mesaj kutusunu göstermek için JavaScript
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mesaj kutusunu seç
+        const messageBox = document.getElementById("messageBox");
+
+        // Kutu varsa ve 3 saniye sonra gizlenmesi gerekiyorsa
+        if (messageBox) {
+          setTimeout(function () {
+            messageBox.style.display = "none"; // Kutuyu gizle
+          }, 3000); // 3 saniye sonra gizle
+        }
+      });
+    </script>
+  </body>
+</html>
