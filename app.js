@@ -52,8 +52,11 @@ app.get("/posts/:id/edit", async (req, res) => {
 
 app.get("/posts/:id", async (req, res) => {
   const post = await Posts.findById(req.params.id);
-  res.render("postviews/post", { post });
+  res.render("postviews/post", { post }); 
 });
+
+
+
 
 app.listen(port, () => {
   console.log("listening on port 3000");

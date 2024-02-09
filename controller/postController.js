@@ -18,12 +18,18 @@ const updatePost = async (req, res) => {
 
         // Başarılı bir şekilde güncellendiğine dair mesaj gönder
         res.redirect('/posts/'+postId );
-    } catch (error) {
+    } catch (error) { 
         // Hata durumunda hatayı yakala ve istemciye gönder
         res.status(500).json({ error: error.message });
     }
 };
 
+
+
+const deletepost = async (req, res) => {
+  await Post.findByIdAndDelete(req.params.id);
+  res.redirect("/");
+}
 
 const addpost = async(req, res) => {
      // İstemciden gelen verileri alın
@@ -54,4 +60,4 @@ const addpost = async(req, res) => {
 };
 
 // Kontrolcüyü dışa aktar
-module.exports = { updatePost, addpost };
+module.exports = { updatePost, addpost,deletepost };

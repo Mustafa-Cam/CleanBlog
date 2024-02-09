@@ -7,23 +7,23 @@
   <body>
     <!-- Navigation -->
 
-   <%- include('../partials/_navbar.ejs') %>
+    <%- include('../partials/_navbar.ejs') %>
 
     <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Clean Blog</h1>
-            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Clean Blog</h1>
+              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
-  
+    </header>
+
     <!-- Post -->
     <div class="container my-5">
       <div class="card">
@@ -32,7 +32,9 @@
           <p class="card-text"><%= post.message %></p>
           <!-- Update and Delete Buttons -->
           <div class="d-flex justify-content-end mt-4">
-            <a href="/posts/<%= post._id %>/edit" class="btn btn-primary mr-2">Update</a>
+            <a href="/posts/<%= post._id %>/edit" class="btn btn-primary mr-2"
+              >Update</a
+            >
             <button class="btn btn-danger" id="deletePost">Delete</button>
           </div>
           <!-- Back to Posts Button -->
@@ -48,9 +50,9 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom scripts for this template -->
-  <script src="js/clean-blog.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/clean-blog.min.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -66,9 +68,9 @@
           if (confirmDelete) {
             // Kullanıcı onaylarsa, postun silinmesi için istek gönder
             // Bu isteği Axios gibi bir HTTP istemcisiyle yapabilirsiniz
-            // Örneğin: axios.delete('/posts/<%= post._id %>');
+             axios.delete('/posts/<%= post._id %>'); 
             // Silme işlemi tamamlandıktan sonra kullanıcıyı yönlendirebilirsiniz
-            window.location.href = "/posts/<%= post._id %>/delete";
+            window.location.href = "/";
           }
         });
       });
@@ -88,5 +90,6 @@
         }
       });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>
